@@ -4,9 +4,10 @@ import ContactItem from './ContactItem/ContactItem';
 import styles from './ContactList.module.css';
 
 export default function ContactList({ contacts, filter, onDeleteContact }) {
-  const filteredContacts = contacts.filter(contact => {
-    return contact.name;
-  });
+  const filteredContacts = contacts.filter(
+    contact =>
+      contact.name && contact.name.toLowerCase().includes(filter.toLowerCase())
+  );
 
   return (
     <ul>

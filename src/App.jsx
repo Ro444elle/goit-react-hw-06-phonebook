@@ -15,9 +15,12 @@ export default function App() {
   const filter = useSelector(state => state.contacts.filter);
 
   useEffect(() => {
-    const storedContacts = localStorage.getItem(STORAGE_KEY);
-    if (storedContacts) {
-      dispatch(addContact(JSON.parse(storedContacts)));
+    const storedData = localStorage.getItem(STORAGE_KEY);
+    if (storedData) {
+      const contactsFromLocalStorage = JSON.parse(storedData);
+      contactsFromLocalStorage.forEach(contact => {
+        dispatch(addContact(contact));
+      });
     }
   }, [dispatch]);
 
